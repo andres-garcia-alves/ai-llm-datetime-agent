@@ -2,9 +2,10 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import express from 'express'
 import cors from 'cors'
-import corsOptions from './middleware/cors-options.js'
-import logger from './middleware/logger.js'
-import chat from './routes/chat.js'
+import corsOptions from './middleware/corsOptions.js'
+import consoleLogger from './middleware/consoleLogger.js'
+import { errorHandler, notFound } from './middleware/errors.js'
+import chatRoutes from './routes/chatRoutes.js'
 
 const __filename = fileURLToPath(import.meta.url); // path to the file
 const __dirname = path.dirname(__filename); // name of the directory
@@ -23,10 +24,14 @@ app.use(cors(corsOptions))
 app.use(express.static(path.join(__dirname, 'public')))
 
 // logger middleware
-app.use(logger)
+app.use(consoleLogger)
 
 // routes
-app.use('/chatbot/api', chat)
+app.use('/chatbot/api', chatRoutes)
+
+// error handler
+app.use(notFound)
+app.use(errorHandler)
 
 // server
 const port = process.env.PORT || 8000
