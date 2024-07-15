@@ -24,7 +24,7 @@ app.use(cors(corsOptions))
 app.use(express.static(path.join(__dirname, 'public')))
 
 // logger middleware
-app.use(consoleLogger)
+app.use(consoleLogger.logger)
 
 // routes
 app.use('/chatbot/api', chatRoutes)

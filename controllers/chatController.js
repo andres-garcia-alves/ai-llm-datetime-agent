@@ -1,13 +1,20 @@
+import gptChat from '../services/gptService.js'
+import consoleLogger from '../middleware/consoleLogger.js'
+
 const root = (req, res, next) => {
   res.status(200).json({ response: 'Chatbot API' })
 }
 
-const chat = (req, res, next) => {
-  if (!req.body.message) { return raiseError('Missing property: "message"', 500, next) }
+const chat = async (req, res, next) => {
+  const authorization = req.header('Authorization')
+  const message = req.body.message
 
+  if (!message) { return raiseError('Missing property: "message"', 500, next) }
 
+  const response = await gptChat(authorization, message)
+  consoleLogger.logResponse(response)
 
-  res.status(200).json({ response: 'bien' })
+  res.status(200).json({ message: response })
 }
 
 

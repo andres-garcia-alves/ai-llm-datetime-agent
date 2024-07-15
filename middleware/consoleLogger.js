@@ -9,9 +9,13 @@ const logger = (req, res, next) => {
   console.log()
   console.log('TIME:    ', time)
   console.log('REQUEST: ', request)
-  console.log('MESSAGE: ', message['green'])
+  console.log('MESSAGE: ', message['yellow'])
 
   next()
 }
 
-export default logger
+const logResponse = (message) => {
+  console.log('RESPONSE:', message['green'])
+}
+
+export default { logger, logResponse }
