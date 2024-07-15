@@ -4,9 +4,9 @@ import backendFunctions from './gptService/backendFunctions.js'
 const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY })
 
 
-const gptChat = async (authorization, message) => {
+const chat = async (auth, message) => {
 
-  const completion = await openai.chat.completions.create({
+  /*const completion = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo', // gpt-3.5-turbo-0613, gpt-3.5-turbo-1106
     messages: [
       { role: 'system', content: 'You are a helpful assistant.' },
@@ -25,8 +25,12 @@ const gptChat = async (authorization, message) => {
     const functionName = completionResponse.function_call.name;
     const functionArgs = JSON.parse(completionResponse.function_call.arguments)
 
-    return await backendFunctions.parseGptResponse(authorization, functionName, functionArgs)
-  }
+    const response = await backendFunctions.parseGptResponse(auth, functionName, functionArgs)
+    return response
+  }*/
+
+  const response = await backendFunctions.parseGptResponse(auth, 'budget-extended', { sortDesc: true, limit: 4 })
+  return response
 }
 
-export default gptChat
+export default { chat }

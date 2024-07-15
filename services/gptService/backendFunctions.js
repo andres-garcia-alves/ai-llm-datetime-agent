@@ -1,10 +1,20 @@
-import backendService from '../backendService.js'
 import sampleService from '../sampleService.js'
+import { getBudgetAll, getBudgetExtended } from './budgets.js'
 
 const functions = [
   {
-    name: 'timeLookup',
-    description: 'Look up the current time in a given location',
+    name: 'budget-all',
+    description: 'Consultar presupuestos', // 'Look up for budgets'
+    parameters: { }
+  },
+  {
+    name: 'budget-extended',
+    description: 'Consultar presupuestos',
+    parameters: { }
+  },
+  {
+    name: 'time-lookup',
+    description: 'Buscar la hora actual en una ubicación determinada', // 'Look up the current time in a given location'
     parameters: {
       type: 'object',
       properties: {
@@ -16,17 +26,18 @@ const functions = [
       },
       requiered: ['location']
     }
-  }
+  }  
 ]
 
-const parseGptResponse = async (authorization, functionName, functionArgs) => {
-  // console.log('parseResponse:', functionName, functionArgs)
-  backendService.init(authorization)
+const parseGptResponse = async (auth, fnName, fnArgs) => {
+  // console.log('parseGptResponse', auth, fnName, fnArgs)
 
-  switch (functionName) {
-    case 'presupuestos':  return await backendService.api.presupuestos.get()
-    case 'timeLookup':    return await sampleService.timeLookup(functionArgs.location)
-    default:              return `ParseGptResponse(): No existe la función ${ functionName }.`
+  switch (fnName) {
+    case 'budget-all':        return await getBudgetAll(auth)
+    case 'budget-extended':   return await getBudgetExtended(auth, fnArgs)
+
+    case 'time-lookup':       return await sampleService.timeLookup(fnArgs.location)
+    default:                  return `ParseGptResponse(): No existe la función ${ fnName }.`
   }
 }
 

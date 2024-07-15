@@ -7,15 +7,17 @@ const logger = (req, res, next) => {
   const message = `${ req.body.message }`
 
   console.log()
-  console.log('TIME:    ', time)
-  console.log('REQUEST: ', request)
-  console.log('MESSAGE: ', message['yellow'])
+  console.log('TIME:          ', time)
+  console.log('REQUEST:       ', request)
+  console.log('MESSAGE:       ', message['yellow'])
 
   next()
 }
 
-const logResponse = (message) => {
-  console.log('RESPONSE:', message['green'])
+const logResponse = (response) => {
+  console.log('RESPONSE-TYPE: ', response.type['green'])
+  console.log('RESPONSE-DATA: ')
+  console.log(response.message['green'])
 }
 
 export default { logger, logResponse }
