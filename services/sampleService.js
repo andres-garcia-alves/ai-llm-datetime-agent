@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { formatDateHour } from '../utilities/utilities.js'
+import moment from 'moment-timezone'
 
 const baseUrl = 'https://worldtimeapi.org/api/timezone/'
 const axiosInstance = axios.create({ baseURL: baseUrl })
@@ -8,9 +8,11 @@ const axiosInstance = axios.create({ baseURL: baseUrl })
 const timeLookup = async (location) => { // 'Buenos_Aires'
 
   const result = await axiosInstance.get(location)
-  const datetime = formatDateHour(result.data.datetime)
-  
-  const response = `El tiempo actual en ${ location } es ${ datetime }.`
+  const data = result.data.datetime
+
+  const datetime = moment.tz(data, location).format('DD/MM/yy hh:mm')
+  const response = `El dia/hora actual en ${ location } es ${ datetime }.`
+
   return { type: 'TABULAR', message: response }
 }
 

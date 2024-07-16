@@ -6,7 +6,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY })
 
 const chat = async (auth, message) => {
 
-  /*const completion = await openai.chat.completions.create({
+  const completion = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo', // gpt-3.5-turbo-0613, gpt-3.5-turbo-1106
     messages: [
       { role: 'system', content: 'You are a helpful assistant.' },
@@ -19,7 +19,7 @@ const chat = async (auth, message) => {
   const completionResponse = completion.choices[0].message
 
   if (completionResponse.content) {
-    return completionResponse.content
+    return { type: 'TEXT', message: completionResponse.content }
   }
   else {
     const functionName = completionResponse.function_call.name;
@@ -27,9 +27,11 @@ const chat = async (auth, message) => {
 
     const response = await backendFunctions.parseGptResponse(auth, functionName, functionArgs)
     return response
-  }*/
+  }
 
-  const response = await backendFunctions.parseGptResponse(auth, 'budget-extended', { sortDesc: true, limit: 4 })
+  // const response = await backendFunctions.parseGptResponse(auth, 'time-lookup', { location: 'Asia/Jerusalem' }) // Asia/Shanghai
+  // const response = await backendFunctions.parseGptResponse(auth, 'budget-extended', { sortDesc: true, limit: 4 })
+
   return response
 }
 
