@@ -11,7 +11,7 @@ const timeLookup = async (location) => { // 'Buenos_Aires'
   const data = result.data.datetime
 
   const datetime = moment.tz(data, location).format('DD/MM/yy hh:mm')
-  const response = `El dia/hora actual en ${ location } es ${ datetime }.`
+  const response = `El dia y hora actual en ${ location } es: ${ datetime }.`
 
   return { type: 'TABULAR', message: response }
 }
