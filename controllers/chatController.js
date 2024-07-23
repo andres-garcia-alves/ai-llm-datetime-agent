@@ -2,10 +2,6 @@ import authentication from '../authentication.js'
 import gptService from '../services/gptService.js'
 import consoleLogger from '../middleware/consoleLogger.js'
 
-const root = (req, res, next) => {
-  res.status(200).json({ response: 'Chatbot API' })
-}
-
 const chat = async (req, res, next) => {
 
   const auth = authentication.build(req)
@@ -30,4 +26,4 @@ const raiseError = (errorMsg, errorStatus, next) => {
   return next(error) 
 }
 
-export { root, chat }
+export { chat }

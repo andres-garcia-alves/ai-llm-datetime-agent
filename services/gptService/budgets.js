@@ -13,7 +13,7 @@ const getBudgetAll = async (auth) => {
     return acum + `#${ item.id } (${ date }) ${ total }, `;
   }, '')
 
-  return { type: 'TABULAR', message: response }
+  return { type: 'TABULAR', response: response }
 }
 
 const getBudgetExtended = async (auth, args) => {
@@ -46,7 +46,7 @@ const getBudgetExtended = async (auth, args) => {
 
   response = response.substring(0, response.lastIndexOf(', '))
 
-  return { type: 'TEXT', message: response }
+  return { type: 'TEXT', response: response }
 }
 
 

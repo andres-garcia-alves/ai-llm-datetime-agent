@@ -19,7 +19,7 @@ const chat = async (auth, message) => {
   const completionResponse = completion.choices[0].message
 
   if (completionResponse.content) {
-    return { type: 'TEXT', message: completionResponse.content }
+    return { type: 'TEXT', response: completionResponse.content }
   }
   else {
     const functionName = completionResponse.function_call.name;

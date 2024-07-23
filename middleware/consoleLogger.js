@@ -17,7 +17,7 @@ const logger = (req, res, next) => {
 const logResponse = (response) => {
   console.log('RESPONSE-TYPE: ', response.type['green'])
   console.log('RESPONSE-DATA: ')
-  console.log(response.message['green'])
+  console.log(response.response['green'])
 }
 
 export default { logger, logResponse }

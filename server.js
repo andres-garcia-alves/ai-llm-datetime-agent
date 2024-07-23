@@ -5,7 +5,7 @@ import cors from 'cors'
 import corsOptions from './middleware/corsOptions.js'
 import consoleLogger from './middleware/consoleLogger.js'
 import { errorHandler, notFound } from './middleware/errors.js'
-import chatRoutes from './routes/chatRoutes.js'
+import routes from './routes/routes.js'
 
 const __filename = fileURLToPath(import.meta.url); // path to the file
 const __dirname = path.dirname(__filename); // name of the directory
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(consoleLogger.logger)
 
 // routes
-app.use('/chatbot/api', chatRoutes)
+app.use('/chatbot/api', routes)
 
 // error handler
 app.use(notFound)
