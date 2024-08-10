@@ -32,9 +32,9 @@ https://worldtimeapi.org/api/timezone/
 
 | ChatGTP (Standard)                                  | ChatGTP + WorldTimeAPI                              |
 |-----------------------------------------------------|-----------------------------------------------------|
-| ![](Resources/01-chat-gpt.png)                      | ![](Resources/02-chat-gpt-agent.png)                |
+| ![](resources/01-chat-gpt-standard.png)             | ![](resources/02-chat-gpt-agent.png)                |
 
-See 'Rescources' sub-folder for more pictures & videos of the project.
+See 'rescources' sub-folder for more pictures & videos of the project.
 
 &nbsp;
 
