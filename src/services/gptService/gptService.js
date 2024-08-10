@@ -1,34 +1,38 @@
 import OpenAI from 'openai'
-import gptFunctions from './gptFunctions.js'
+import gptAvailableFunctions from './gptAvailableFunctions.js'
 
-const chat = async ( message) => {
+const chat = async (message) => {
+
+  const enableFunctions = true
+  // const enableFunctions = (process.env.CUSTOM_FUNCTIONS.toUpperCase() === 'TRUE'); 
 
   const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY })
 
   const completion = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo', // gpt-3.5-turbo-0613, gpt-3.5-turbo-1106
+    model: 'gpt-4o-mini', // 'gpt-3.5-turbo',
     messages: [
       { role: 'system', content: 'You are a helpful assistant.' },
       { role: 'user', content: message }
     ],
-    functions: gptFunctions.functions,
-    function_call: "auto"
+    n: 1,
+    max_tokens: 400,
+    functions: (enableFunctions) ? gptAvailableFunctions.functions : null,
+    function_call: (enableFunctions) ? "auto" : null
   })
 
-  const completionResponse = completion.choices[0].message
+  let response = {}
+  const completionResponse = completion.choices[0]
 
-  if (completionResponse.content) {
-    return { type: 'TEXT', response: completionResponse.content }
+  if (completionResponse.finish_reason === 'function_call') {
+    const functionName = completionResponse.message.function_call.name;
+    const functionArgs = JSON.parse(completionResponse.message.function_call.arguments)
+
+    response = await gptAvailableFunctions.parseResponse(functionName, functionArgs)
   }
   else {
-    const functionName = completionResponse.function_call.name;
-    const functionArgs = JSON.parse(completionResponse.function_call.arguments)
-
-    const response = await gptFunctions.parseResponse(functionName, functionArgs)
-    return response
+    response = { type: 'text', response: completionResponse.message.content }
   }
 
-  // const response = await gptFunctions.parseGptResponse('time-lookup', { location: 'Asia/Jerusalem' }) // Asia/Shanghai
   return response
 }
 
