@@ -1,30 +1,30 @@
 # ChatGPT LLM Datetime Agent
 
-A ChatGPT-4o chatbot agent specialized in datetime.
+A ChatGPT-4o chatbot agent specialized in the current local time of the given location.
 
 &nbsp;
 
 ### Motivation
 
-Specialized chatbots (agents) can be created based on ChatGPT and similars.  
+Specialized chatbots (agents) can be created based on ChatGPT and similar models.
 
-ChatGPT is based on public internet data from year 2021. This have some implications, for instance:
+ChatGPT is based on public data from the Internet from the year 2021. This has some implications, for instance:
 
-- Its answers could lead to outdated techniques or libraries in the case of source code generation.
-- Its answers cound not include **real-time data**, eg: stock data, datetime data, and so on...
-- Its answers cound not include **custom data** retrieved from private-owned APIs, and so on...
+- Its responses could lead to obsolete techniques or libraries in the case of source code generation.
+- Its responses cannot include **real-time data**, for example: stock quotes, current date/time data, etc.
+- Its responses cannot include **custom data** retrieved from private APIs, etc.
 
-But, ChatGPT LLM can be "teached" with custom funtions... enabling it to use them in its answers in adition to its own knownledge.  
-With this in mind, now ChatGPT could inlude real-time data by calling public o private-owned APIs, for instance: to turn CharGPT into a specialized chatbot.
+<br/>
 
-More info:  
-https://platform.openai.com/docs/guides/function-calling
+But ChatGPT LLM can also be "taught" custom functions... allowing it to use them in addition to its own knowledge, when putting together its responses.  
+For this project ChatGPT will be able to include real-time data by calling the public API from [WorldTimeAPI](https://worldtimeapi.org/).
 
-For this demo project, I'm connecting ChatGPT with WorldTimeAPI, enableing it to retrieve the current local time for a given location around the globe.
+<br/>
 
 More info:  
 https://worldtimeapi.org/  
-https://worldtimeapi.org/api/timezone/
+https://worldtimeapi.org/api/timezone/  
+https://platform.openai.com/docs/guides/function-calling  
 
 &nbsp;
 
