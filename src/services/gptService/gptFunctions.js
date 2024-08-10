@@ -1,4 +1,4 @@
-import sampleService from '../sampleService/sampleService.js'
+import worldtimeService from '../worldtimeService/worldtimeService.js'
 
 const functions = [
   {
@@ -22,7 +22,7 @@ const parseResponse = async (fnName, fnArgs) => {
   // console.log('parseGptResponse', fnName, fnArgs)
 
   switch (fnName) {
-    case 'time-lookup':       return await sampleService.timeLookup(fnArgs.location)
+    case 'time-lookup':       return await worldtimeService.timeLookup(fnArgs.location)
     default:                  return `ParseGptResponse(): No existe la función ${ fnName }.`
   }
 }
