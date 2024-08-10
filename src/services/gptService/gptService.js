@@ -1,18 +1,17 @@
 import OpenAI from 'openai'
-import backendFunctions from './gptService/backendFunctions.js'
+import gptFunctions from './gptFunctions.js'
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY })
+const chat = async ( message) => {
 
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY })
 
-const chat = async (auth, message) => {
-
-  /*const completion = await openai.chat.completions.create({
+  const completion = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo', // gpt-3.5-turbo-0613, gpt-3.5-turbo-1106
     messages: [
       { role: 'system', content: 'You are a helpful assistant.' },
       { role: 'user', content: message }
     ],
-    functions: backendFunctions.functions,
+    functions: gptFunctions.functions,
     function_call: "auto"
   })
 
@@ -25,13 +24,11 @@ const chat = async (auth, message) => {
     const functionName = completionResponse.function_call.name;
     const functionArgs = JSON.parse(completionResponse.function_call.arguments)
 
-    const response = await backendFunctions.parseGptResponse(auth, functionName, functionArgs)
+    const response = await gptFunctions.parseResponse(functionName, functionArgs)
     return response
-  }*/
+  }
 
-  const response = await backendFunctions.parseGptResponse(auth, 'time-lookup', { location: 'Asia/Jerusalem' }) // Asia/Shanghai
-  // const response = await backendFunctions.parseGptResponse(auth, 'budget-extended', { sortDesc: true, limit: 4 })
-
+  // const response = await gptFunctions.parseGptResponse('time-lookup', { location: 'Asia/Jerusalem' }) // Asia/Shanghai
   return response
 }
 

@@ -2,10 +2,10 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import express from 'express'
 import cors from 'cors'
-import corsOptions from './middleware/corsOptions.js'
-import consoleLogger from './middleware/consoleLogger.js'
-import { errorHandler, notFound } from './middleware/errors.js'
-import routes from './routes/routes.js'
+import corsOptions from './src/middleware/corsOptions.js'
+import consoleLogger from './src/middleware/consoleLogger.js'
+import { errorHandler, notFound } from './src/middleware/errors.js'
+import routes from './src/routes/routes.js'
 
 const __filename = fileURLToPath(import.meta.url); // path to the file
 const __dirname = path.dirname(__filename); // name of the directory

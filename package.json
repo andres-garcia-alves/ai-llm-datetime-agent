@@ -1,5 +1,6 @@
 {
-  "name": "portal-ecommerce-gpt-chatbot",
+  "name": "llm-datetime-agent",
+  "description": "A ChatGPT-4o chatbot agent specialized in datetime.",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -10,7 +11,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.7.2",
     "colors": "^1.4.0",

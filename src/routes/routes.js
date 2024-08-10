@@ -6,7 +6,8 @@ import { status } from '../controllers/statusController.js'
 const router = express.Router()
 
 router.get('/', root)
-router.post('/chat', chat)
 router.get('/status', status)
+router.post('/chat', chat)
+
 
 export default router
